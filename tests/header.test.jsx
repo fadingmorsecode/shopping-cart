@@ -1,13 +1,13 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import Home from '../src/components/home/home';
+import Header from '../src/components/header/header';
 
 describe('Header component', () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
-        <Home />
+        <Header />
       </BrowserRouter>
     );
   });
