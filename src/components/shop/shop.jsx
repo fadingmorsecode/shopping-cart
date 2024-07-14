@@ -1,13 +1,22 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useOutletContext } from 'react-router-dom';
 
 function Product({ data }) {
+  const [cart, setCart] = useOutletContext();
+
   return (
     <li data-testid='product-element'>
       <img src={data.image} data-testid='product-image'></img>
       <p>{data.title}</p>
       <p>⭐️ {data.rating.rate}</p>
       <p>${data.price}</p>
+      <div>
+        <button>+</button>
+        <input />
+        <button>-</button>
+        <button>Add to Cart</button>
+      </div>
     </li>
   );
 }
