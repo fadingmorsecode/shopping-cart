@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 function Product({ data }) {
   return (
-    <li>
-      <img src={data.image}></img>
+    <li data-testid='product-element'>
+      <img src={data.image} data-testid='product-image'></img>
       <p>{data.title}</p>
       <p>⭐️ {data.rating.rate}</p>
       <p>${data.price}</p>
