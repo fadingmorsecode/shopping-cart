@@ -9,16 +9,16 @@ const routes = [
     element: <App />,
     children: [
       {
+        index: true,
+        element: <Home />,
+      },
+      {
         path: 'shop',
         element: <Shop />,
       },
       {
         path: 'cart',
         element: <ShoppingCart />,
-      },
-      {
-        path: '/',
-        element: <Home />,
       },
     ],
   },

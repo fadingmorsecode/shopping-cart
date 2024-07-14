@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function Header() {
+export default function Header({ cartCount }) {
   return (
     <header data-testid='header-component'>
       <img src='/aberdeen-logo.svg' alt='Aberdeen cobweb logo' />
@@ -10,6 +10,7 @@ export default function Header() {
       <Link to='/cart'>
         <img src='/shopping-cart.svg' alt='Shopping cart icon' />
       </Link>
+      <p>{cartCount > 0 && cartCount}</p>
     </header>
   );
 }
