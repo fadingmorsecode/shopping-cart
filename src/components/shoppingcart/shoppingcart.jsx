@@ -48,9 +48,12 @@ export default function ShoppingCart() {
             <Item key={item.id} data={item} />
           ))}
         </ul>
-        <p>${getCartSubtotal()} subtotal</p>
         {cart.length > 0 && (
-          <button onClick={handlePlacedOrder}>Place Order</button>
+          <div>
+            <p>Order summary</p>
+            <p>${getCartSubtotal()} subtotal</p>
+            <button onClick={handlePlacedOrder}>Place Order</button>
+          </div>
         )}
       </main>
     </>
