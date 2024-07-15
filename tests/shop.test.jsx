@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, afterAll } from 'vitest';
-import { getAllByRole, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Shop from '../src/components/shop/shop';
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+import routes from '../src/routes';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 
@@ -26,22 +26,18 @@ describe('shop component', () => {
   const fetchSpy = vi.spyOn(window, 'fetch');
   fetchSpy.mockImplementation(fetchMock);
 
-  vi.mock('react-router-dom', () => ({
-    useOutletContext: () => [vi.fn()],
-    BrowserRouter: vi.fn().mockImplementation((props) => props.children),
-  }));
-
   afterAll(() => {
     fetchSpy.mockRestore();
   });
 
   beforeEach(() => {
     act(() => {
-      render(
-        <BrowserRouter>
-          <Shop />
-        </BrowserRouter>
-      );
+      const router = createMemoryRouter(routes, {
+        initialEntries: ['/', '/shop'],
+        initialIndex: 1,
+      });
+
+      render(<RouterProvider router={router} />);
     });
   });
 
@@ -85,5 +81,19 @@ describe('shop component', () => {
     await user.clear(quantityInput);
     await user.type(quantityInput, '2');
     expect(quantityInput).toHaveValue(2);
+  });
+
+  it('should add to cart', async () => {
+    const user = userEvent.setup();
+
+    await waitFor(() => {
+      screen.getByTestId('product-element');
+    });
+
+    const cartTotal = screen.getByTestId('cart-count');
+    expect(cartTotal.textContent).toBe('');
+
+    await user.click(screen.getByRole('button', { name: 'Add to Cart' }));
+    expect(cartTotal.textContent).toBe('1');
   });
 });

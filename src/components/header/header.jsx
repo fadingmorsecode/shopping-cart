@@ -10,7 +10,7 @@ export default function Header({ cartCount }) {
       <Link to='/cart'>
         <img src='/shopping-cart.svg' alt='Shopping cart icon' />
       </Link>
-      <p>{cartCount > 0 && cartCount}</p>
+      <p data-testid='cart-count'>{cartCount > 0 && cartCount}</p>
     </header>
   );
 }
