@@ -19,7 +19,7 @@ function QuantityInput({ quantityVal, setQuantityVal }) {
 }
 
 function Product({ data }) {
-  const [cart, setCart] = useOutletContext();
+  const { cart, setCart } = useOutletContext();
   const [quantityVal, setQuantityVal] = useState(1);
 
   function addToCart() {
