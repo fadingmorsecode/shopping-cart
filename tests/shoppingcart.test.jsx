@@ -78,4 +78,10 @@ describe('shopping cart component', () => {
     expect(itemCount).toBeInTheDocument();
     expect(itemCount.textContent).toMatch(/3/i);
   });
+  it('should render items in cart', () => {});
 });
+
+// expect(screen.getByText('mock product')).toBeInTheDocument();
+// expect(screen.getByText('⭐️ 3.2')).toBeInTheDocument();
+// expect(screen.getByText('$19.99')).toBeInTheDocument();
+// expect(screen.getByTestId('product-image').src).toMatch(/image.com/i);
