@@ -89,19 +89,38 @@ Product.propTypes = {
 
 export default function Shop() {
   const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch('https://fakestoreapi.com/products', { mode: 'cors' })
-      .then((response) => response.json())
-      .then((response) => setData(response));
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error('server error');
+        }
+        return response.json();
+      })
+      .then((response) => setData(response))
+      .catch((error) => {
+        setError(error);
+      })
+      .finally(() => setLoading(false));
   }, []);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (error) {
+    return <p>A network error occurred</p>;
+  }
+
   return (
-    (data && (
-      <ul>
-        {data.map((obj) => {
-          obj.quantity = 0;
-          return <Product key={obj.id} data={obj} />;
-        })}
-      </ul>
-    )) || <h1>Loading...</h1>
+    <ul>
+      {data.map((obj) => {
+        obj.quantity = 0;
+        return <Product key={obj.id} data={obj} />;
+      })}
+    </ul>
   );
 }
