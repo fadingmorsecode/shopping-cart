@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterAll } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useOutletContext } from 'react-router-dom';
 import Shop from '../src/components/shop/shop';
 import { vi } from 'vitest';
 
@@ -23,8 +23,13 @@ describe('shop component', () => {
   }
 
   const fetchSpy = vi.spyOn(window, 'fetch');
-
   fetchSpy.mockImplementation(fetchMock);
+
+  vi.mock('react-router-dom', () => ({
+    useOutletContext: () => [vi.fn()],
+    BrowserRouter: vi.fn().mockImplementation((props) => props.children),
+  }));
+
   afterAll(() => {
     fetchSpy.mockRestore();
   });
