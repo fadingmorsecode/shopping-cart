@@ -4,7 +4,14 @@ import { useOutletContext } from 'react-router-dom';
 
 function QuantityInput({ quantityVal, setQuantityVal }) {
   function handleChange(e) {
-    setQuantityVal(e.target.value);
+    const value = e.target.value;
+
+    // Ensure the value is a valid number within the range
+    if (/^\d*$/.test(value)) {
+      const formattedValue =
+        value === '' ? '' : Math.max(1, Math.min(9, Number(value)));
+      setQuantityVal(formattedValue);
+    }
   }
 
   return (
@@ -23,24 +30,27 @@ function Product({ data }) {
   const [quantityVal, setQuantityVal] = useState(1);
 
   function addToCart() {
-    const comparison = cart.find((item) => item.id === data.id);
+    console.log(quantityVal);
+    if (quantityVal < 10 && quantityVal > 0) {
+      const comparison = cart.find((item) => item.id === data.id);
 
-    if (!comparison) {
-      data.quantity = quantityVal;
-      setCart([...cart, data]);
-    } else {
-      setCart(
-        cart.map((item) => {
-          if (item.id === data.id) {
-            const newQuantity = item.quantity + quantityVal;
-            return {
-              ...item,
-              quantity: newQuantity > 9 ? item.quantity : newQuantity,
-            };
-          }
-          return item;
-        })
-      );
+      if (!comparison) {
+        data.quantity = quantityVal;
+        setCart([...cart, data]);
+      } else {
+        setCart(
+          cart.map((item) => {
+            if (item.id === data.id) {
+              const newQuantity = item.quantity + quantityVal;
+              return {
+                ...item,
+                quantity: newQuantity > 9 ? item.quantity : newQuantity,
+              };
+            }
+            return item;
+          })
+        );
+      }
     }
   }
 
@@ -53,6 +63,7 @@ function Product({ data }) {
       <div>
         <button
           onClick={() => {
+            console.log(quantityVal);
             if (quantityVal + 1 < 10) setQuantityVal((prevVal) => prevVal + 1);
           }}
         >
@@ -64,6 +75,7 @@ function Product({ data }) {
         />
         <button
           onClick={() => {
+            console.log(quantityVal);
             if (quantityVal - 1 > 0) setQuantityVal((prevVal) => prevVal - 1);
           }}
         >
