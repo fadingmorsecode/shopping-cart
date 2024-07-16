@@ -4,14 +4,14 @@ import styles from './header.module.css';
 export default function Header({ cartCount }) {
   return (
     <header data-testid='header-component' className={styles.header}>
-      <div className={styles.logoTextGroup}>
+      <Link to='/' className={styles.logoTextGroup}>
         <img
           src='/aberdeen-logo.svg'
           alt='Aberdeen cobweb logo'
           className={styles.logoImg}
         />
         <h1 className={styles.headerCompanyText}>Aberdeen</h1>
-      </div>
+      </Link>
       <div className={styles.linkCartGroup}>
         <Link to='/' className={styles.textLinks}>
           Home
