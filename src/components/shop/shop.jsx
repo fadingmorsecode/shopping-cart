@@ -22,6 +22,7 @@ function QuantityInput({ quantityVal, setQuantityVal }) {
       max={9}
       value={quantityVal}
       onChange={handleChange}
+      className={styles.productInput}
     />
   );
 }
@@ -56,33 +57,44 @@ function Product({ data }) {
   }
 
   return (
-    <li data-testid='product-element'>
-      <img src={data.image} data-testid='product-image'></img>
-      <p>{data.title}</p>
-      <p>⭐️ {data.rating.rate}</p>
-      <p>${data.price}</p>
-      <div>
-        <button
-          onClick={() => {
-            console.log(quantityVal);
-            if (quantityVal + 1 < 10) setQuantityVal((prevVal) => prevVal + 1);
-          }}
-        >
-          +
+    <li data-testid='product-element' className={styles.productListItem}>
+      <img
+        src={data.image}
+        data-testid='product-image'
+        className={styles.productImage}
+      ></img>
+      <p className={styles.productTitle}>{data.title}</p>
+      <p className={styles.productRating}>⭐️ {data.rating.rate}</p>
+      <p className={styles.productPrice}>${data.price}</p>
+      <div className={styles.cartManipulationGroup}>
+        <div className={styles.buttonsGroup}>
+          <button
+            onClick={() => {
+              console.log(quantityVal);
+              if (quantityVal + 1 < 10)
+                setQuantityVal((prevVal) => prevVal + 1);
+            }}
+            className={styles.productIncrement}
+          >
+            +
+          </button>
+          <QuantityInput
+            quantityVal={quantityVal}
+            setQuantityVal={setQuantityVal}
+          />
+          <button
+            onClick={() => {
+              console.log(quantityVal);
+              if (quantityVal - 1 > 0) setQuantityVal((prevVal) => prevVal - 1);
+            }}
+            className={styles.productDecrement}
+          >
+            -
+          </button>
+        </div>
+        <button onClick={addToCart} className={styles.productAdd}>
+          Add to Cart
         </button>
-        <QuantityInput
-          quantityVal={quantityVal}
-          setQuantityVal={setQuantityVal}
-        />
-        <button
-          onClick={() => {
-            console.log(quantityVal);
-            if (quantityVal - 1 > 0) setQuantityVal((prevVal) => prevVal - 1);
-          }}
-        >
-          -
-        </button>
-        <button onClick={addToCart}>Add to Cart</button>
       </div>
     </li>
   );
@@ -129,7 +141,7 @@ export default function Shop() {
   }
 
   return (
-    <ul>
+    <ul className={styles.productList}>
       {data.map((obj) => {
         obj.quantity = 0;
         return <Product key={obj.id} data={obj} />;
