@@ -1,0 +1,71 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.mainText {
+  font-family: var(--roboto);
+  font-size: 1.1rem;
+}
+
+.shopNowBtnLink {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.shopNowBtn {
+  font-family: var(--roboto);
+  background-color: #cc0100;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+.homeImg {
+  background: url(/public/aberdeen-home-img.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+  align-self: center;
+}
+
+@media screen and (min-width: 600px) {
+  .mainContainer {
+    padding: 50px;
+  }
+  .mainText {
+    font-size: 1.3rem;
+  }
+  .shopNowBtnLink {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .shopNowBtn {
+    font-size: 1.4rem;
+  }
+
+  .homeImg {
+    width: 600px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .mainContainer {
+    flex-direction: row;
+    padding: 50px;
+    justify-content: center;
+  }
+  .mainText {
+    width: 500px;
+  }
+  .homeImg {
+    width: 500px;
+  }
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useOutletContext } from 'react-router-dom';
+import styles from './shop.module.css';
 
 function QuantityInput({ quantityVal, setQuantityVal }) {
   function handleChange(e) {

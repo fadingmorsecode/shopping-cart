@@ -89,6 +89,9 @@
   }
 
   .cartCount {
-    top: -8px;
+    width: 19px;
+    height: 19px;
+    font-size: 12px;
+    padding: 11px;
   }
 }
