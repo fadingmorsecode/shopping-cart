@@ -8,7 +8,7 @@ function Item({ data }) {
         <p>{data.title}</p>
       </div>
       <div>
-        <p>
+        <p data-testid='product-quantity'>
           {data.quantity < 2
             ? data.quantity + ' item'
             : data.quantity + ' items'}
@@ -35,12 +35,18 @@ export default function ShoppingCart() {
     setCart([]);
   }
 
+  const cartCount = getCartCount();
+
   return (
     <>
       <h2>Cart</h2>
       <div>
         <p>${getCartSubtotal()} subtotal</p>
-        <p data-testid='total-cart-count'>{getCartCount()} items</p>
+        <p data-testid='total-cart-count'>
+          {cartCount > 2 || cartCount < 1
+            ? cartCount + ' items'
+            : cartCount + ' item'}
+        </p>
       </div>
       <main>
         <ul>

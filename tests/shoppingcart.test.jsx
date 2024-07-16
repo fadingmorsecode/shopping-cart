@@ -6,29 +6,30 @@ import routes from '../src/routes';
 import userEvent from '@testing-library/user-event';
 
 describe('shopping cart component', () => {
+  const mockData = [
+    {
+      id: 1,
+      image: 'image.com',
+      title: 'first',
+      rating: {
+        rate: 3.2,
+      },
+      price: 19.99,
+    },
+    {
+      id: 2,
+      image: 'anotherimage.com',
+      title: 'second',
+      rating: {
+        rate: 4.2,
+      },
+      price: 29.95,
+    },
+  ];
+
   function fetchMock() {
     return Promise.resolve({
-      json: () =>
-        Promise.resolve([
-          {
-            id: 1,
-            image: 'image.com',
-            title: 'first',
-            rating: {
-              rate: 3.2,
-            },
-            price: 19.99,
-          },
-          {
-            id: 2,
-            image: 'anotherimage.com',
-            title: 'second',
-            rating: {
-              rate: 4.2,
-            },
-            price: 29.95,
-          },
-        ]),
+      json: () => Promise.resolve(mockData),
     });
   }
 
@@ -70,7 +71,6 @@ describe('shopping cart component', () => {
   });
   it('should render correct subtotal', () => {
     const subtotal = screen.getAllByText(/subtotal/i);
-    console.log(subtotal);
     expect(subtotal[0]).toBeInTheDocument();
     expect(subtotal[1]).toBeInTheDocument();
     expect(subtotal[0].textContent).toMatch(/79.89/i);
@@ -81,5 +81,36 @@ describe('shopping cart component', () => {
     expect(itemCount).toBeInTheDocument();
     expect(itemCount.textContent).toMatch(/3/i);
   });
-  it('should render items in cart', () => {});
+  it('should render product image', () => {
+    const items = screen.getAllByRole('listitem');
+    const item1 = items[0];
+    expect(item1.querySelector('img')).toBeInTheDocument();
+    expect(item1.querySelector('img')).toHaveAttribute(
+      'src',
+      `${mockData[0].image}`
+    );
+  });
+  it('should render product price', () => {
+    expect(screen.getByText(mockData[0].title)).toBeInTheDocument();
+    expect(
+      screen.getByText(mockData[0].price, { exact: false })
+    ).toBeInTheDocument();
+  });
+  it('should render product quantity singularly', () => {
+    expect(screen.getAllByTestId('product-quantity')[0].textContent).toMatch(
+      '1 item'
+    );
+  });
+  it('should render product quantity plurally', () => {
+    expect(screen.getAllByTestId('product-quantity')[1].textContent).toMatch(
+      '2 items'
+    );
+  });
+  it('should clear cart on order placement', async () => {
+    const user = userEvent.setup();
+    const cartCount = screen.getByTestId('total-cart-count');
+    expect(cartCount.textContent).toMatch('3 items');
+    await user.click(screen.getByRole('button', { name: 'Place Order' }));
+    expect(cartCount.textContent).toMatch('0 items');
+  });
 });
