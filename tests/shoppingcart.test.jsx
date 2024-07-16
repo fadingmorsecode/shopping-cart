@@ -69,19 +69,17 @@ describe('shopping cart component', () => {
     expect(cartHeading.textContent).toMatch(/Cart/i);
   });
   it('should render correct subtotal', () => {
-    const subtotal = screen.getByText(/subtotal/i);
-    expect(subtotal).toBeInTheDocument();
-    expect(subtotal.textContent).toMatch(/79.89/i);
+    const subtotal = screen.getAllByText(/subtotal/i);
+    console.log(subtotal);
+    expect(subtotal[0]).toBeInTheDocument();
+    expect(subtotal[1]).toBeInTheDocument();
+    expect(subtotal[0].textContent).toMatch(/79.89/i);
+    expect(subtotal[1].textContent).toMatch(/79.89/i);
   });
   it('should render correct item count', () => {
-    const itemCount = screen.getByText(/items/i);
+    const itemCount = screen.getByTestId('total-cart-count');
     expect(itemCount).toBeInTheDocument();
     expect(itemCount.textContent).toMatch(/3/i);
   });
   it('should render items in cart', () => {});
 });
-
-// expect(screen.getByText('mock product')).toBeInTheDocument();
-// expect(screen.getByText('⭐️ 3.2')).toBeInTheDocument();
-// expect(screen.getByText('$19.99')).toBeInTheDocument();
-// expect(screen.getByTestId('product-image').src).toMatch(/image.com/i);

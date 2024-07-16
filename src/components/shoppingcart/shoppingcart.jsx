@@ -40,7 +40,7 @@ export default function ShoppingCart() {
       <h2>Cart</h2>
       <div>
         <p>${getCartSubtotal()} subtotal</p>
-        <p>{getCartCount()} items</p>
+        <p data-testid='total-cart-count'>{getCartCount()} items</p>
       </div>
       <main>
         <ul>
