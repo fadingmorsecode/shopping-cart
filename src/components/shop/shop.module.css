@@ -59,6 +59,7 @@
 
 .productAdd {
   font-family: var(--roboto);
+  width: 130px;
 }
 
 .productInput {
