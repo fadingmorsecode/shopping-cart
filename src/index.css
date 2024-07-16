@@ -47,8 +47,3 @@ h6 {
 :root {
   --roboto: 'Roboto', sans-serif;
 }
-
-.outlet-container {
-  display: flex;
-  justify-content: center;
-}

@@ -133,7 +133,11 @@ export default function Shop() {
   }, []);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className={styles.loaderContainer}>
+        <div className={styles.loader}></div>
+      </div>
+    );
   }
 
   if (error) {
