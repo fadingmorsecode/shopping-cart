@@ -141,7 +141,7 @@ export default function Shop() {
   }
 
   if (error) {
-    return <p>A network error occurred</p>;
+    return <p className={styles.networkError}>A network error occurred</p>;
   }
 
   return (

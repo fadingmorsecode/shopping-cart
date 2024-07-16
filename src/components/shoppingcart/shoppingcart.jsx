@@ -51,7 +51,7 @@ export default function ShoppingCart() {
         <p className={styles.cartSubtotal}>${getCartSubtotal()} subtotal</p>
         <span>•</span>
         <p className={styles.cartCount} data-testid='total-cart-count'>
-          {cartCount > 2 || cartCount < 1
+          {cartCount > 1 || cartCount < 1
             ? cartCount + ' items'
             : cartCount + ' item'}
         </p>

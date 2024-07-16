@@ -80,6 +80,12 @@
   gap: 10px;
 }
 
+.networkError {
+  font-family: var(--roboto);
+  font-size: 2.5rem;
+  margin-top: 25px;
+}
+
 .loaderContainer {
   display: flex;
   justify-content: center;
