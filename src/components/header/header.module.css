@@ -1,0 +1,67 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.logoTextGroup {
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  width: 50px;
+}
+
+.headerCompanyText {
+  margin-left: 5px;
+  font-family: var(--roboto);
+  font-size: 1.8rem;
+  color: #cc0100;
+}
+
+.linkCartGroup {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.textLinks {
+  flex-direction: column;
+  text-decoration: none;
+  font-family: var(--roboto);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: black;
+}
+
+.textLinks:hover {
+  text-decoration: underline;
+}
+
+.cartImg {
+  width: 35px;
+  position: relative;
+}
+
+.cartGroup {
+  position: relative;
+}
+
+.cartCount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--roboto);
+  font-size: 11px;
+  height: 17px;
+  width: 17px;
+  padding: 10px;
+  position: absolute;
+  right: 0px;
+  top: -10px;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+}
