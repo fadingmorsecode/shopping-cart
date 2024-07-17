@@ -23,6 +23,7 @@ function QuantityInput({ quantityVal, setQuantityVal }) {
       value={quantityVal}
       onChange={handleChange}
       className={styles.productInput}
+      aria-label='quantity input'
     />
   );
 }
