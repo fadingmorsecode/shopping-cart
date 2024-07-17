@@ -12,7 +12,7 @@ export default function Header({ cartCount }) {
         />
         <h1 className={styles.headerCompanyText}>Aberdeen</h1>
       </Link>
-      <div className={styles.linkCartGroup}>
+      <nav className={styles.linkCartGroup}>
         <Link to='/' className={styles.textLinks}>
           Home
         </Link>
@@ -34,7 +34,7 @@ export default function Header({ cartCount }) {
             {cartCount > 0 ? (cartCount > 99 ? '99+' : cartCount) : null}
           </p>
         </div>
-      </div>
+      </nav>
     </header>
   );
 }
