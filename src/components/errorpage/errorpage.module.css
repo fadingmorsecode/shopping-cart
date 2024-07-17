@@ -1,0 +1,61 @@
+.errorElsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.image404Group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 200px;
+}
+
+.span,
+.errorText,
+.returnHomeBtn {
+  font-family: var(--roboto);
+}
+
+.span {
+  font-size: 4rem;
+  color: #cc0100;
+}
+
+.errorText {
+  font-size: 2rem;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.returnHomeBtn {
+  text-decoration: none;
+  font-size: 1rem;
+  background-color: #cc0100;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 1000px) {
+  .image {
+    width: 200px;
+  }
+  .span {
+    font-size: 4.2rem;
+  }
+
+  .errorText {
+    font-size: 2.7rem;
+    margin-bottom: 50px;
+  }
+  .returnHomeBtn {
+    font-size: 1.2rem;
+  }
+}
