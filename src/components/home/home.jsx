@@ -17,7 +17,7 @@ export default function Home() {
           Shop Now
         </Link>
       </div>
-      <div className={styles.homeImg}></div>
+      <div className={styles.homeImg} data-testid='home-decoration-img'></div>
     </main>
   );
 }
