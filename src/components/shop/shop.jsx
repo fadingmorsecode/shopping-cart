@@ -104,6 +104,7 @@ function Product({ data }) {
 
 Product.propTypes = {
   data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     rating: PropTypes.shape({
