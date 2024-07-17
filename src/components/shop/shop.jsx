@@ -27,12 +27,16 @@ function QuantityInput({ quantityVal, setQuantityVal }) {
   );
 }
 
+QuantityInput.propTypes = {
+  quantityVal: PropTypes.number.isRequired,
+  setQuantityVal: PropTypes.func.isRequired,
+};
+
 function Product({ data }) {
   const { cart, setCart } = useOutletContext();
   const [quantityVal, setQuantityVal] = useState(1);
 
   function addToCart() {
-    console.log(quantityVal);
     if (quantityVal < 10 && quantityVal > 0) {
       const comparison = cart.find((item) => item.id === data.id);
 
@@ -70,7 +74,6 @@ function Product({ data }) {
         <div className={styles.buttonsGroup}>
           <button
             onClick={() => {
-              console.log(quantityVal);
               if (quantityVal + 1 < 10)
                 setQuantityVal((prevVal) => prevVal + 1);
             }}
@@ -84,7 +87,6 @@ function Product({ data }) {
           />
           <button
             onClick={() => {
-              console.log(quantityVal);
               if (quantityVal - 1 > 0) setQuantityVal((prevVal) => prevVal - 1);
             }}
             className={styles.productDecrement}

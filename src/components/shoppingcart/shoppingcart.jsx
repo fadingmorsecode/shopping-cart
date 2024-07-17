@@ -1,5 +1,6 @@
 import { useOutletContext } from 'react-router-dom';
 import styles from './shoppingcart.module.css';
+import PropTypes from 'prop-types';
 
 function Item({ data }) {
   return (
@@ -26,6 +27,15 @@ function Item({ data }) {
     </li>
   );
 }
+
+Item.propTypes = {
+  data: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+  }),
+};
 
 export default function ShoppingCart() {
   const { getCartCount, cart, setCart } = useOutletContext();
