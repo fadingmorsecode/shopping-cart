@@ -29,7 +29,7 @@ export default function Header({ cartCount }) {
           </Link>
           <p
             data-testid='cart-count'
-            className={cartCount > 0 && styles.cartCount}
+            className={cartCount > 0 ? styles.cartCount : undefined}
           >
             {cartCount > 0 ? (cartCount > 99 ? '99+' : cartCount) : null}
           </p>
