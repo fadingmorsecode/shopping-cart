@@ -1,6 +1,6 @@
 .productList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 32 0px);
+  grid-template-columns: repeat(auto-fit, 320px);
   padding: 0;
   justify-content: center;
   gap: 10px;
@@ -25,10 +25,13 @@
 
 .productTitle {
   margin-bottom: 15px;
-  height: 150px;
   text-align: center;
   font-family: var(--roboto);
   font-size: 1.1rem;
+  width: 280px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .productRating,
